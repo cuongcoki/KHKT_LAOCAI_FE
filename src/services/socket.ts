@@ -22,7 +22,7 @@ class SocketService {
       return;
     }
 
-    this.socket = io(import.meta.env.VITE_API_URL || 'http://localhost:3001', {
+    this.socket = io(import.meta.env.VITE_API_BASE_URL || 'http://14.225.211.7:8222', {
       auth: {
         token,
       },
