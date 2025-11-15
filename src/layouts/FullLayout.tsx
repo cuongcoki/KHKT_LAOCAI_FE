@@ -7,12 +7,12 @@ import { ArrowUp } from 'lucide-react';
 import { Outlet } from 'react-router';
 
 interface FullLayoutProps {
-  userRole?: 'admin' | 'user';
+  userRole?: 'admin' | 'student' | 'teacher';
   companyName?: string;
 }
 
 const FullLayout: FC<FullLayoutProps> = ({ 
-  userRole = 'user',
+  userRole = 'student',
   companyName = 'Your Company'
 }) => {
   // ** Get collapsed state from localStorage
@@ -92,7 +92,7 @@ const FullLayout: FC<FullLayoutProps> = ({
             showSettings={true}
             showUserAvatar={true}
             notificationCount={3}
-            userInitials="CG"
+            // userInitials="CG"
             searchPlaceholder="Search..."
             onSearchChange={handleSearchChange}
             onNotificationClick={handleNotificationClick}

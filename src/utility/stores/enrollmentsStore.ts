@@ -16,7 +16,7 @@ interface EnrollmentState {
   clearError: () => void;
 }
 
-export const useEnrollmentStore = create<EnrollmentState>()((set, get) => ({
+export const useEnrollmentStore = create<EnrollmentState>()((set) => ({
   // Initial State
   enrollments: [],
   isLoading: false,

@@ -28,10 +28,10 @@ const TeacherClasses = () => {
             <div className="flex justify-between items-center">
               <TabsList className="bg-[var(--color-secondary)] text-white text-xl">
                 <TabsTrigger value="students">Học sinh</TabsTrigger>
-                <TabsTrigger value="assignments">Bài tập</TabsTrigger>
+                {/* <TabsTrigger value="assignments">Bài tập</TabsTrigger>
                 <TabsTrigger value="quiz">Quiz</TabsTrigger>
                 <TabsTrigger value="grades">Điểm số</TabsTrigger>
-                <TabsTrigger value="documents">Tài liệu</TabsTrigger>
+                <TabsTrigger value="documents">Tài liệu</TabsTrigger> */}
               </TabsList>
               
             </div>

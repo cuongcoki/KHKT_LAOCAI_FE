@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
   RowSelectionState,
+  ColumnDef,
 } from "@tanstack/react-table";
 import {
   Table,
@@ -36,8 +37,23 @@ import { Trash2, Search, UserCircle, Loader2, Users } from "lucide-react"; // Th
 import { useEnrollmentStore } from "@/utility/stores/enrollmentsStore";
 import { IEnrollmentItem } from "@/domain/interfaces/IErollment";
 import { columns } from "./student_table/Column";
-import { IUser } from "@/domain/interfaces/IUser";
 import { useOnlineUsers } from "@/services/useOnlineUsers";
+import { UserRole } from "../../siderbar";
+
+
+export interface IUser {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  role: UserRole;
+  full_name: string;
+  avatar?: string;
+  phone?: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
 
 // Type definition
 export interface Student {
@@ -105,7 +121,7 @@ const StudentsTable = ({ classId }: StudentsTableProps) => {
       status: enrollment.status,
       attendance_count: enrollment.attendance_count,
       enrollment_date: enrollment.enrollment_date,
-      isOnline: checkUserOnline(enrollment.student_id.user_id._id), // ✅ Check online
+      isOnline: checkUserOnline(enrollment.student_id.user_id._id), 
     }));
   }, [enrollments, onlineUsers]); // ✅ Thêm onlineUsers vào dependency
 
@@ -139,7 +155,7 @@ const StudentsTable = ({ classId }: StudentsTableProps) => {
 
   const table = useReactTable({
     data: filteredData,
-    columns: columns,
+    columns: columns  as ColumnDef<Student>[],
     getCoreRowModel: getCoreRowModel(),
     onRowSelectionChange: setRowSelection,
     state: {

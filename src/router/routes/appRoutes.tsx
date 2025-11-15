@@ -187,6 +187,10 @@ export const appRoutes: RouteObject[] = [
             path: "datasets",
             element: <TeacherDatasets />,
           },
+           {
+            path: "notifications",
+            element: <NotificationPage />,
+          }
         ],
       },
     ],

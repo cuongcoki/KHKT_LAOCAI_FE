@@ -3,7 +3,6 @@ import CoreHorizontalLayout from '@core/layouts/HorizontalLayout';
 import { Footer } from '@core/components/footer';
 import { ArrowUp} from 'lucide-react';
 import { Outlet } from 'react-router';
-import Navbar from '@/@core/components/ui/landing/Navbar';
 
 interface HorizontalLayoutProps {
   companyName?: string;
@@ -41,7 +40,7 @@ const HorizontalLayout: FC<HorizontalLayoutProps> = ({
   return (
     <>
       <CoreHorizontalLayout
-        navbar={<Navbar />}
+        // navbar={<Navbar />}
         footer={
           <Footer
             companyName={companyName}

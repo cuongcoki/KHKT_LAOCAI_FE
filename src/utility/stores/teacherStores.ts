@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import teacherAPI from "@/infra/api/teacher/teacherAPI";
-import { ITeacherResponse, ITeacherResponseData } from "@/domain/interfaces/ITeacher";
+import {  ITeacherResponseData } from "@/domain/interfaces/ITeacher";
 import { handleApiError } from "../lib/errorHandler";
 import { IApiError } from "../lib/IError";
 import { storage } from "../lib/storage";
@@ -34,14 +34,13 @@ export const useTeacherStore = create<TeacherState>()((set) => ({
     const response = await teacherAPI.getProfileTeacher();
 
     // ✅ Destructure để TypeScript hiểu rõ hơn
-    const { data } = response;
-
+  
     set({
-      teacher: data,
+      teacher: response.data || null,
       isLoading: false,
     });
     
-    storage.set("profile_teacher", data);
+    storage.set("profile_teacher", response.data);
   } catch (error) {
     const apiError = handleApiError(error);
 
