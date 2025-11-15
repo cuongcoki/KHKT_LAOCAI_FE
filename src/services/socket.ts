@@ -1,6 +1,8 @@
 import { io, Socket } from 'socket.io-client';
 import { storage } from '@/utility/lib/storage';
 
+
+
 class SocketService {
   private socket: Socket | null = null;
   private reconnectAttempts = 0;
@@ -22,7 +24,7 @@ class SocketService {
       return;
     }
 
-    this.socket = io(import.meta.env.VITE_API_BASE_URL || 'http://14.225.211.7:8222', {
+    this.socket = io('http://14.225.211.7:8222', {
       auth: {
         token,
       },
