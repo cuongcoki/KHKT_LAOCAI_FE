@@ -9,7 +9,6 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import "dayjs/locale/vi";
 
-
 import Player from "./Player";
 import Footer from "./Footer";
 
@@ -119,7 +118,7 @@ const Login: FC = () => {
       </main>
 
       {/* FOOTER */}
-    <Footer />
+      <Footer />
     </div>
   );
 };

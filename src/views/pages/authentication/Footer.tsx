@@ -29,19 +29,20 @@ const Footer = () => {
 
       <div className="mx-auto py-2 px-4 sm:px-6 lg:px-8 relative z-10 flex justify-between items-center">
         {/* Main Section - Team Members */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-2">
+        <div className="flex flex-col md:flex-row gap-2.5">
           {/* Research Team Members */}
-          <div>
-            <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="">
+            <div className="flex items-center justify-start gap-2 mb-3">
               <User className="h-4 w-4 text-primary-light" />
               <h3 className="copyright-subtext text-sm font-semibold uppercase tracking-wide text-white/90">
-                <i className="text-primary-light ">Nhóm nghiên cứu</i>
+                <i className="text-primary-light">Nhóm nghiên cứu</i>
               </h3>
             </div>
-            <div className="flex">
-              <div className="bg-white/10 backdrop-blur-sm border border-primary-light px-2 py-1 rounded-lg mr-4">
+
+            <div className="flex flex-wrap gap-3">
+              <div className="bg-white/10 backdrop-blur-sm border border-primary-light px-2 py-1 rounded-lg w-full sm:w-auto sm:flex-1 sm:max-w-[280px]">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 border-2 border-white/30">
+                  <Avatar className="h-12 w-12 border-2 border-white/30 flex-shrink-0">
                     <AvatarImage
                       src={tranminh}
                       alt="Trần Minh"
@@ -59,9 +60,9 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm border border-primary-light px-2 py-1 rounded-lg">
+              <div className="bg-white/10 backdrop-blur-sm border border-primary-light px-2 py-1 rounded-lg w-full sm:w-auto sm:flex-1 sm:max-w-[280px]">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 border-2 border-white/30">
+                  <Avatar className="h-12 w-12 border-2 border-white/30 flex-shrink-0">
                     <AvatarImage
                       src={manhcuong}
                       alt="Phan Mạnh Cường"
@@ -82,28 +83,29 @@ const Footer = () => {
           </div>
 
           {/* Advisors */}
-          <div>
-            <div className="flex items-start justify-start gap-2 mb-2">
-              <User className="h-4 w-4 text-primary-light " />
-              <h3 className="copyright-subtext text-sm font-semibold uppercase tracking-wide ">
-                <i className="text-primary-light ">Giáo viên hướng dẫn</i>
+          <div className="">
+            <div className="flex items-center justify-start gap-2 mb-3">
+              <User className="h-4 w-4 text-primary-light" />
+              <h3 className="copyright-subtext text-sm font-semibold uppercase tracking-wide text-white/90">
+                <i className="text-primary-light">Giáo viên hướng dẫn</i>
               </h3>
             </div>
-            <div className="flex">
-              <div className="bg-white/10 backdrop-blur-sm border border-primary-light px-2 py-1 rounded-lg">
+
+            <div className="flex flex-wrap gap-3">
+              <div className="bg-white/10 backdrop-blur-sm border border-primary-light px-2 py-1 rounded-lg w-full sm:w-auto sm:flex-1 sm:max-w-[280px]">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 border-2 border-white/30">
+                  <Avatar className="h-12 w-12 border-2 border-white/30 flex-shrink-0">
                     <AvatarImage
                       src={thay}
-                      alt="Trần Minh"
+                      alt="Thầy Đặng Tuấn Thành"
                       className="w-full h-full object-cover"
                     />
                     <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                      TM
+                      ĐT
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-primary-light  truncate">
+                    <p className="text-sm font-semibold text-primary-light truncate">
                       Thầy Đặng Tuấn Thành
                     </p>
                   </div>
@@ -119,8 +121,9 @@ const Footer = () => {
         {/* Copyright */}
         <div className="copyright-section ">
           <p className="copyright-text text-primary-light">
-            © 2025 Trường THPT Chuyên Nguyễn Tất Thành, Lào Cai
+            © 2025 Trường THPT Chuyên Nguyễn Tất Thành
           </p>
+          <p className="copyright-text text-primary-light">Tỉnh Lào Cai</p>
           <p className="copyright-subtext text-primary-light">
             Sản phẩm dự thi Khoa học Kỹ thuật tỉnh 2025
           </p>
@@ -128,8 +131,7 @@ const Footer = () => {
       </div>
 
       <div className="flex px-4 py-1 bg-gradient-to-r from-primary-dark to-primary-light/80 backdrop-blur-sm justify-end items-center gap-2 text-xs text-white/75 relative z-10">
-
-        <div className="flex justify-end items-center md:items-end">
+        <div className="flex md:justify-end justify-center items-center ">
           <div className="flex flex-wrap justify-center gap-4 px-2">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4" />

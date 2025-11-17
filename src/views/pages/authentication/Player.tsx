@@ -279,10 +279,10 @@ export default function Player() {
                         <MediaTimeRange className="media-time-range" />
                         <MediaTimeDisplay
                           showDuration
-                          className="media-time-display"
+                          className="media-time-display md:flex hidden"
                         />
                         <MediaMuteButton className="media-button" />
-                        <MediaVolumeRange className="media-volume-range" />
+                        <MediaVolumeRange className="media-volume-range md:flex hidden" />
                         <MediaPlaybackRateButton className="media-button" />
                         <MediaFullscreenButton className="media-button" />
                       </MediaControlBar>
