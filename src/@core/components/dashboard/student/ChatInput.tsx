@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 interface Attachment {
   type: "image" | "document";
@@ -62,43 +62,64 @@ const ChatInput = ({ onSendMessage, isLoading = false }: ChatInputProps) => {
     return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
   };
 
-  // ✅ Handle image upload với validation 1MB
+  // ✅ Validate and set image
+  const validateAndSetImage = (file: File) => {
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast.error('Vui lòng chỉ chọn file ảnh');
+      return false;
+    }
+
+    // Validate file size - Tối đa 1MB
+    const maxSize = 1 * 1024 * 1024; // 1MB in bytes
+    if (file.size > maxSize) {
+      toast.error(
+        `Kích thước ảnh quá lớn (${formatFileSize(file.size)}). Vui lòng chọn ảnh dưới 1MB`
+      );
+      return false;
+    }
+
+    // All validations passed
+    setImage({
+      type: "image",
+      url: URL.createObjectURL(file),
+      name: file.name,
+      file,
+    });
+
+    toast.success(`Đã chọn ảnh (${formatFileSize(file.size)})`);
+    return true;
+  };
+
+  // ✅ Handle paste event (Ctrl+V / Cmd+V)
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const items = e.clipboardData?.items;
+    
+    if (!items) return;
+
+    // Check if there's an image in clipboard
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      
+      if (item.type.startsWith('image/')) {
+        e.preventDefault(); // Prevent default paste behavior
+        
+        const file = item.getAsFile();
+        if (file) {
+          validateAndSetImage(file);
+        }
+        break; // Only handle first image
+      }
+    }
+  };
+
+  // ✅ Handle image upload from file picker
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files[0]) {
-      const file = files[0];
-      
-      // ✅ Validate file type
-      if (!file.type.startsWith('image/')) {
-        toast.error('Vui lòng chỉ chọn file ảnh');
-        e.target.value = "";
-        return;
-      }
-
-      // ✅ Validate file size - Tối đa 1MB
-      const maxSize = 1 * 1024 * 1024; // 1MB in bytes
-      if (file.size > maxSize) {
-        toast.error(
-          `Kích thước ảnh quá lớn (${formatFileSize(file.size)}). Vui lòng chọn ảnh dưới 1MB`,
-          {
-            duration: 4000,
-          }
-        );
-        e.target.value = "";
-        return;
-      }
-
-      // ✅ All validations passed
-      setImage({
-        type: "image",
-        url: URL.createObjectURL(file),
-        name: file.name,
-        file,
-      });
-
-      toast.success(`Đã chọn ảnh (${formatFileSize(file.size)})`);
+      validateAndSetImage(files[0]);
     }
-    e.target.value = "";
+    e.target.value = ""; // Reset input
   };
 
   const removeImage = () => {
@@ -136,13 +157,14 @@ const ChatInput = ({ onSendMessage, isLoading = false }: ChatInputProps) => {
         )}
 
         <div className="flex justify-center items-end gap-2">
-          {/* Text Input */}
+          {/* Text Input - ✅ WITH PASTE SUPPORT */}
           <div className="flex-1 relative max-w-[650px]">
             <Textarea
               ref={textareaRef}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={handleKeyDown}
+              onPaste={handlePaste} // ✅ Handle paste event
               placeholder="Đặt câu hỏi hoặc nhập nội dung cần hỗ trợ..."
               className="min-h-[56px] max-h-[200px] resize-none border-[var(--color-primary-light)]/30 focus:ring-[var(--color-primary-light)] overflow-y-auto"
               rows={2}
@@ -159,7 +181,7 @@ const ChatInput = ({ onSendMessage, isLoading = false }: ChatInputProps) => {
               className="h-8 w-8 flex-shrink-0 border-[var(--color-primary-light)]/30 hover:bg-[var(--color-primary-light)]/10"
               disabled={isLoading}
               onClick={() => imageInputRef.current?.click()}
-              title="Tải lên ảnh (tối đa 1MB)" // ✅ Tooltip
+              title="Tải lên ảnh (tối đa 1MB)"
             >
               <ImageIcon className="w-5 h-5 text-[var(--color-primary-light)]" />
             </Button>
@@ -191,13 +213,16 @@ const ChatInput = ({ onSendMessage, isLoading = false }: ChatInputProps) => {
         </div>
 
         <p className="text-xs text-center text-gray-500 mt-2">
-          Nhấn{" "}
           <kbd className="px-2 py-0.5 bg-gray-100 rounded text-xs">Enter</kbd>{" "}
           để gửi,{" "}
           <kbd className="px-2 py-0.5 bg-gray-100 rounded text-xs">
             Shift + Enter
           </kbd>{" "}
-          để xuống dòng • {" "}
+          để xuống dòng,{" "}
+          <kbd className="px-2 py-0.5 bg-gray-100 rounded text-xs">
+            Ctrl + V
+          </kbd>{" "}
+          để dán ảnh • {" "}
           <span className="text-orange-600 font-medium">Ảnh tối đa 1MB</span>
         </p>
       </div>

@@ -1,25 +1,23 @@
+// App.tsx
 import { Toaster } from "react-hot-toast";
 import { Router } from "./router";
-import { ThemeProvider, useAuthStore } from "./utility";
-import { useEffect } from "react";
+import { ThemeProvider } from "./utility";
 import { SocketProvider } from "./services/SocketContext";
+import AuthProvider from "./AuthProvider";
+import SessionExpiredDialog from "./infra/api/SessionExpiredDialog";
 
 function App() {
-  const initializeAuth = useAuthStore((state) => state.initializeAuth);
-
-  useEffect(() => {
-    initializeAuth();
-  }, [initializeAuth]);
-
   return (
-    <>
-      <ThemeProvider>
+    <ThemeProvider>
+      <AuthProvider>
         <SocketProvider>
-          <Router />
+          <Router /> {/* RouterProvider bên trong */}
           <Toaster position="top-right" gutter={12} />
+          {/* ✅ Session Expired Dialog - Always mounted */}
+          <SessionExpiredDialog />
         </SocketProvider>
-      </ThemeProvider>
-    </>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
