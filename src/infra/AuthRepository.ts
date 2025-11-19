@@ -1,6 +1,6 @@
-import axiosInstance from './api/conflig/axiosInstance';
-import { API_ENDPOINTS } from './api/conflig/apiEndpoints';
-import { IAuthResponse, ILoginRequest } from '@/domain/interfaces/IAuth';
+import axiosInstance from "./api/conflig/axiosInstance";
+import { API_ENDPOINTS } from "./api/conflig/apiEndpoints";
+import { IAuthResponse, ILoginRequest } from "@/domain/interfaces/IAuth";
 
 /**
  * Authentication Repository
@@ -13,9 +13,39 @@ class AuthRepository {
   async login(credentials: ILoginRequest): Promise<IAuthResponse> {
     const response = await axiosInstance.post<IAuthResponse>(
       API_ENDPOINTS.AUTH.LOGIN,
-      credentials
+      credentials,
+      {
+        withCredentials: true, // ✅ Ensure cookies are sent/received
+      }
     );
     return response.data;
+  }
+
+  /**
+   * Logout
+   */
+  async logout(): Promise<void> {
+    await axiosInstance.post(
+      API_ENDPOINTS.AUTH.LOGOUT,
+      {},
+      {
+        withCredentials: true, // ✅ Clear cookies
+      }
+    );
+  }
+
+  /**
+   * Refresh Access Token
+   */
+  async refreshAccessToken(): Promise<{ accessToken: string }> {
+    const response = await axiosInstance.post(
+      API_ENDPOINTS.AUTH.REFRESH,
+      {},
+      {
+        withCredentials: true, // ✅ Send refresh token cookie
+      }
+    );
+    return response.data.data;
   }
 
   /**

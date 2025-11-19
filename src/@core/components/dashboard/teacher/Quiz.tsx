@@ -11,23 +11,16 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+
 import {
   ClipboardList,
   Clock,
-  Trophy,
+  // Trophy,
   Play,
   Edit,
   Trash2,
   Plus,
-  Calendar,
+  // Calendar,
   Target,
   Shuffle,
   BarChart,
@@ -155,14 +148,14 @@ const formatDate = (dateString: string) => {
   });
 };
 
-const getQuizTypeLabel = (type: string) => {
-  const types = {
-    multiple_choice: "Trắc nghiệm",
-    true_false: "Đúng/Sai",
-    mixed: "Hỗn hợp",
-  };
-  return types[type] || type;
-};
+// const getQuizTypeLabel = (type: string) => {
+//   const types = {
+//     multiple_choice: "Trắc nghiệm",
+//     true_false: "Đúng/Sai",
+//     mixed: "Hỗn hợp",
+//   };
+//   return types[type] || type;
+// };
 
 // Quiz Preview Component (Flashcard Style like Quizlet)
 const QuizPreview = ({
@@ -178,7 +171,7 @@ const QuizPreview = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [showAnswer, setShowAnswer] = useState(false);
+  // const [showAnswer, setShowAnswer] = useState(false);
 
   const currentQuestion = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
@@ -187,7 +180,7 @@ const QuizPreview = ({
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setIsFlipped(false);
-      setShowAnswer(false);
+      // setShowAnswer(false);
     }
   };
 
@@ -195,21 +188,21 @@ const QuizPreview = ({
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setIsFlipped(false);
-      setShowAnswer(false);
+      // setShowAnswer(false);
     }
   };
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
     if (!isFlipped) {
-      setShowAnswer(true);
+      // setShowAnswer(true);
     }
   };
 
   const handleReset = () => {
     setCurrentIndex(0);
     setIsFlipped(false);
-    setShowAnswer(false);
+    // setShowAnswer(false);
   };
 
   if (!currentQuestion) return null;
@@ -416,7 +409,7 @@ const QuizDetailDialog = ({
                   <Target className="h-4 w-4" />
                   {quiz.total_points} điểm
                 </span>
-                <Badge variant="secondary">{getQuizTypeLabel(quiz.type)}</Badge>
+                {/* <Badge variant="secondary">{getQuizTypeLabel(quiz.type)}</Badge> */}
               </DialogDescription>
             </div>
             <div className="flex items-center gap-2">
@@ -592,7 +585,7 @@ const QuizDetailDialog = ({
 
               <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <div className="font-medium mb-2">Loại bài kiểm tra</div>
-                <Badge variant="outline">{getQuizTypeLabel(quiz.type)}</Badge>
+                {/* <Badge variant="outline">{getQuizTypeLabel(quiz.type)}</Badge> */}
               </div>
 
               <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -701,7 +694,7 @@ const Quiz = () => {
                       {quiz.title}
                     </h3>
                     <Badge variant="secondary">
-                      {getQuizTypeLabel(quiz.type)}
+                      {/* {getQuizTypeLabel(quiz.type)} */}
                     </Badge>
                     {quiz.randomize_questions && (
                       <Badge variant="outline" className="text-xs">

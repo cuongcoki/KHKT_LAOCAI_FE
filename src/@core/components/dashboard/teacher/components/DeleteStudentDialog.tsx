@@ -15,7 +15,7 @@ import { Trash2 } from 'lucide-react';
 import { Student } from '../Student';
 
 const DeleteStudentDialog = ({
-  student,
+  // student,
   onConfirm,
 }: {
   student: Student;
@@ -32,7 +32,7 @@ const DeleteStudentDialog = ({
         <AlertDialogHeader>
           <AlertDialogTitle>Xác nhận xóa học sinh</AlertDialogTitle>
           <AlertDialogDescription>
-            Bạn có chắc chắn muốn xóa học sinh <strong>{student.name || student.student_code}</strong> khỏi lớp học?
+            {/* Bạn có chắc chắn muốn xóa học sinh <strong>{student.name || student.student_code}</strong> khỏi lớp học? */}
             <br />
             Hành động này không thể hoàn tác.
           </AlertDialogDescription>

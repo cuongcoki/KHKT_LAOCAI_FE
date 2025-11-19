@@ -9,6 +9,9 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import "dayjs/locale/vi";
 
+import Player from "./Player";
+import Footer from "./Footer";
+
 // Extend dayjs với plugins
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -16,8 +19,6 @@ dayjs.locale("vi");
 
 const Login: FC = () => {
   const [currentTime, setCurrentTime] = useState("");
-    
-
 
   useEffect(() => {
     // Cập nhật thời gian ngay khi component mount
@@ -27,10 +28,11 @@ const Login: FC = () => {
       const dayOfWeek = vietnamTime.format("dddd"); // Lấy thứ trong tuần bằng tiếng Việt
       const formattedDate = vietnamTime.format("DD/MM/YYYY");
       // const formattedTime = vietnamTime.format("HH:mm:ss");
-      
+
       // Viết hoa chữ cái đầu của thứ
-      const capitalizedDay = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
-      
+      const capitalizedDay =
+        dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
+
       setCurrentTime(`${capitalizedDay}, ${formattedDate} `);
     };
 
@@ -105,37 +107,8 @@ const Login: FC = () => {
         }}
       >
         {/* LEFT SIDE - GIỚI THIỆU */}
-        <div className="w-full lg:w-2/3 p-4 sm:p-6 md:p-8 lg:p-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
-            <i className="text-text-h1 underline ml-2 sm:ml-3 md:ml-5">
-              Giới thiệu:
-            </i>
-          </h2>
-          <div className="text-gray-900 max-w-5xl ml-3 sm:ml-5 md:ml-7 font-medium text-justify leading-relaxed space-y-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-            <p>
-              <i>
-                Trong bối cảnh năm 2025 đánh dấu kỳ thi tốt nghiệp THPT đầu tiên
-                áp dụng toàn diện CTGDPT 2018, việc tìm ra giải pháp công nghệ
-                để khắc phục những hạn chế nêu trên trở nên đặc biệt cấp bách.
-                Ứng dụng AI trong xây dựng phần mềm hỗ trợ học tập các môn Khoa
-                học Tự nhiên không chỉ đáp ứng yêu cầu cá nhân hóa lộ trình học
-                tập, mà còn cung cấp công cụ giúp giáo viên theo dõi tiến bộ,
-                thiết kế kiểm tra đánh giá sát với chuẩn đầu ra. Đồng thời, hệ
-                thống còn tăng cường tính tương tác và thực hành qua mô phỏng
-                thí nghiệm, học liệu số và tình huống thực tế.
-              </i>
-            </p>
-            <p>
-              <i>
-                Với những lợi ích thiết thực và tính cập nhật cao, đề tài "Ứng
-                dụng công nghệ trí tuệ nhân tạo (AI) xây dựng hệ thống hỗ trợ
-                học tập các môn khoa học tự nhiên cho học sinh Trung học phổ
-                thông" mang giá trị khoa học cao, có ý nghĩa thực tiễn lớn, góp
-                phần nâng cao chất lượng dạy và học, hỗ trợ quá trình đổi mới
-                giáo dục phổ thông ở Việt Nam.
-              </i>
-            </p>
-          </div>
+        <div className="w-full lg:w-2/3 p-2 sm:p-4 md:p-6 lg:p-8">
+          <Player />
         </div>
 
         {/* RIGHT SIDE - LOGIN FORM */}
@@ -145,53 +118,7 @@ const Login: FC = () => {
       </main>
 
       {/* FOOTER */}
-      <footer
-        className="text-white text-center py-2 text-sm"
-        style={{
-          background:
-            "linear-gradient(90deg, #00994C 0%, #008C8C 50%, #0077CC 100%)",
-        }}
-      >
-        <div className="flex flex-col md:flex-row justify-between mx-auto px-4 sm:px-10 gap-4">
-          <div>
-            <div className="flex flex-col md:flex-row text-base md:text-xl lg:text-2xl gap-4 md:gap-10">
-              <div className="flex flex-col items-start font-semibold">
-                <span>
-                  <i>Nhóm nghiên cứu:</i>
-                </span>
-                <span className="ml-3">
-                  <i>-Trần Minh</i>
-                </span>
-                <span className="ml-3">
-                  <i>-Phan Mạnh Cường</i>
-                </span>
-              </div>
-              <div className="flex flex-col items-start font-semibold">
-                <span>
-                  <i>Giáo viên hướng dẫn:</i>
-                </span>
-                <span className="ml-3">
-                  <i>-Nguyễn</i>
-                </span>
-                <span className="ml-3">
-                  <i>-Phan</i>
-                </span>
-              </div>
-            </div>
-            <h1 className="text-sm md:text-lg lg:text-2xl font-semibold mt-3 md:mt-5">
-              <i>© Trường THPT Chuyên Nguyễn Tất Thành tỉnh Lào Cai - 2025</i>
-            </h1>
-          </div>
-          <div className="flex flex-col-reverse items-center md:items-end">
-            <div className="text-gray-500 p-2 gap-1.5 bg-black flex flex-col justify-center items-start text-xs md:text-sm">
-              <p>🟢 Đang online: 20</p>
-              <p>📅 Hôm nay: 22</p>
-              <p>🗓️ Tháng này: 1429</p>
-              <p>📊 Tổng lượt truy cập: 82455</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import ClassAPI from "@/infra/api/teacher/teacherAPI";
-import { IClass, IClassResponse } from "@/domain/interfaces/IClass";
+import { IClass } from "@/domain/interfaces/IClass";
 import { handleApiError } from "../lib/errorHandler";
 import { IApiError } from "../lib/IError";
 

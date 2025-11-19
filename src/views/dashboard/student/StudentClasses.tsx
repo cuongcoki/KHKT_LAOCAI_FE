@@ -1,7 +1,7 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 import Assignment from "@/@core/components/dashboard/teacher/Assignment";
-import Grade from "@/@core/components/dashboard/teacher/StudentGrade";
+// import Grade from "@/@core/components/dashboard/teacher/StudentGrade";
 import Quiz from "@/@core/components/dashboard/teacher/Quiz";
 import Document from "@/@core/components/dashboard/teacher/Document";
 

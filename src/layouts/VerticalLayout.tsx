@@ -99,7 +99,7 @@ const VerticalLayout: FC<VerticalLayoutProps> = ({ userRole }) => {
             showSettings={true}
             showUserAvatar={true}
             notificationCount={3}
-            userInitials="CG"
+            // userInitials="CG"
             searchPlaceholder="Search..."
             onSearchChange={handleSearchChange}
             onNotificationClick={handleNotificationClick}

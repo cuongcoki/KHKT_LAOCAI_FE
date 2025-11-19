@@ -35,6 +35,13 @@ import { useNotificationStore } from "@/utility/stores/notificationStore";
 import { INotification } from "@/domain/interfaces/INotification";
 import { useEffect } from "react";
 
+export interface FetchNotificationParams {
+  page: number;
+  limit: number;
+  type?: string;
+  unreadOnly?: boolean;
+}
+
 const Notifications = () => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [showUnreadOnly, setShowUnreadOnly] = useState(false);
@@ -58,7 +65,7 @@ const Notifications = () => {
 
   // Fetch notifications khi component mount hoặc filter thay đổi
   useEffect(() => {
-    const params: any  = {
+    const params: FetchNotificationParams   = {
       page,
       limit,
     };

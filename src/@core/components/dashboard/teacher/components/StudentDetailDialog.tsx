@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Activity, BookOpen, Calendar, Eye, GraduationCap, School, UserCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Student } from '../Student';
@@ -37,13 +37,13 @@ const StudentDetailDialog = ({ student }: { student: Student }) => {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
             <Avatar className="h-12 w-12">
-              <AvatarImage src={student.avatar} alt={student.name} />
+              {/* <AvatarImage src={student.avatar} alt={student.name} /> */}
               <AvatarFallback>
-                {student.name?.charAt(0) || student.student_code.charAt(0)}
+                {/* {student.name?.charAt(0) || student.student_code.charAt(0)} */}
               </AvatarFallback>
             </Avatar>
             <div>
-              <div className="text-lg font-bold">{student.name || 'N/A'}</div>
+              {/* <div className="text-lg font-bold">{student.name || 'N/A'}</div> */}
               <div className="text-sm text-gray-500 font-mono">
                 {student.student_code}
               </div>
@@ -63,7 +63,7 @@ const StudentDetailDialog = ({ student }: { student: Student }) => {
                 Khối lớp
               </div>
               <div className="text-base font-semibold pl-6">
-                {GRADE_LEVELS[student.grade_level] || `Lớp ${student.grade_level}`}
+                {/* {GRADE_LEVELS[student.grade_level] || `Lớp ${student.grade_level}`} */}
               </div>
             </div>
 
@@ -98,7 +98,7 @@ const StudentDetailDialog = ({ student }: { student: Student }) => {
               </div>
               <div className="pl-6">
                 <Badge variant="outline">
-                  {LEARNING_STYLES[student.learning_style] || student.learning_style}
+                  {/* {LEARNING_STYLES[student.learning_style] || student.learning_style} */}
                 </Badge>
               </div>
             </div>
@@ -110,9 +110,9 @@ const StudentDetailDialog = ({ student }: { student: Student }) => {
               </div>
               <div className="pl-6">
                 <Badge 
-                  className={`${DIFFICULTY_LEVELS[student.difficulty_preference]?.color || 'bg-gray-500'} text-white`}
+                  // className={`${DIFFICULTY_LEVELS[student.difficulty_preference]?.color || 'bg-gray-500'} text-white`}
                 >
-                  {DIFFICULTY_LEVELS[student.difficulty_preference]?.label || student.difficulty_preference}
+                  {/* {DIFFICULTY_LEVELS[student.difficulty_preference]?.label || student.difficulty_preference} */}
                 </Badge>
               </div>
             </div>
@@ -144,7 +144,7 @@ const StudentDetailDialog = ({ student }: { student: Student }) => {
           {/* User ID */}
           <div className="space-y-2 pt-2 border-t">
             <div className="text-xs font-medium text-gray-500">User ID</div>
-            <div className="text-xs font-mono text-gray-400">{student.user_id}</div>
+            {/* <div className="text-xs font-mono text-gray-400">{student.user_id}</div> */}
           </div>
         </div>
       </DialogContent>

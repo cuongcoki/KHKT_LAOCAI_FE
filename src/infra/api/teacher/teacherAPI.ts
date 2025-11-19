@@ -1,7 +1,7 @@
 import axiosInstance from "../conflig/axiosInstance";
 import { API_ENDPOINTS } from "../conflig/apiEndpoints";
 import { IClassResponse } from "@/domain/interfaces/IClass";
-import { ITeacherResponseData } from "@/domain/interfaces/ITeacher";
+import { ITeacherResponse,  } from "@/domain/interfaces/ITeacher";
 
 class ClassAPI {
   /**
@@ -14,8 +14,8 @@ class ClassAPI {
     return response.data;
   }
 
-  async getProfileTeacher(): Promise<ITeacherResponseData> {
-    const response = await axiosInstance.get<ITeacherResponseData>(
+  async getProfileTeacher(): Promise<ITeacherResponse> {
+    const response = await axiosInstance.get<ITeacherResponse>(
       API_ENDPOINTS.TEACHER.GETPROFILE
     );
     return response.data;

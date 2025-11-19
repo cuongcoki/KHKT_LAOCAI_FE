@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChatSession } from "@/views/dashboard/student/StudentAITutors";
 import { useEffect } from "react";
+import { truncateText } from "@/utility/lib/truncateText";
 
 interface ChatHistoryProps {
   sessions: ChatSession[];
@@ -80,7 +81,7 @@ const ChatHistory = ({
                       </h3>
                       {session.lastMessage && (
                         <p className="px-1 text-xs text-gray-500 truncate">
-                          {session.lastMessage}
+                          {truncateText(session.lastMessage, 50)}
                         </p>
                       )}
                       <p className="px-1 text-xs text-gray-400">

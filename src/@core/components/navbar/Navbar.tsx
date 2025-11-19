@@ -73,7 +73,7 @@ const Navbar: FC<NavbarProps> = ({
     if (!user?.role) return;
     
     const basePath = getRoleDefaultPath(user.role);
-    navigate(`${basePath}/profile`);
+    navigate(`${basePath}`);
     setIsOpen(false);
   };
 

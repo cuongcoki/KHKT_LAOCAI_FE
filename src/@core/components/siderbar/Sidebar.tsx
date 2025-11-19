@@ -15,7 +15,7 @@ const Sidebar: FC<SidebarProps> = ({
 }) => {
   const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
   const navigate = useNavigate();
-  const links = getFilteredLinks(userRole);
+  const links = getFilteredLinks(userRole || "student");
   const location = useLocation();
   const currentPath = location.pathname;
 

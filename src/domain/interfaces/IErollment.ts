@@ -1,7 +1,22 @@
+import { UserRole } from "@/@core/components";
 import { EnrollmentStatus, IBaseEntity } from "./IEnum";
-import { IUser } from "./IUser";
+
+export interface IUser {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  role: UserRole;
+  full_name: string;
+  avatar?: string;
+  phone?: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
 
 export interface IEnrollment extends IBaseEntity {
+  id: string;
   student_id: string;
   class_id: string;
   enrolled_at: Date;

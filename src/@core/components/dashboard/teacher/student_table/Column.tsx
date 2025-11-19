@@ -1,11 +1,23 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";
-import OnlineStatusBadge from "../../admin/OnlineStatusBadge";
-import { IUser } from "@/domain/interfaces/IUser";
-import EvaluatedStudentDialog from "../components/EvalutedStudentDoalog";
-import SentNotificationsDialog from "../components/sentNotificationsDialog";
+import OnlineStatusBadge from "@/@core/components/dashboard/admin/OnlineStatusBadge";
+import EvaluatedStudentDialog from "@/@core/components/dashboard/teacher/components/EvalutedStudentDoalog";
+import SentNotificationsDialog from "@/@core/components/dashboard/teacher/components/SentNotificationsDialog";
 
+export interface IUser {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+  full_name: string;
+  avatar: string;
+  phone: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
 
 // Sửa interface Student
 export interface Student {
@@ -65,7 +77,7 @@ export const columns: ColumnDef<Student>[] = [
         </div>
         <div>
           <OnlineStatusBadge 
-            userId={row.original.user_id._id } 
+            userId={row.original.user_id._id} 
             showLabel 
             size="sm" 
           />

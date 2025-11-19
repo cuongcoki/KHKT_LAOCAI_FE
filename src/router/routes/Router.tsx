@@ -1,13 +1,14 @@
-import { Suspense, lazy } from 'react';
-import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router';
+// router/Router.tsx
+import { Suspense, lazy } from "react";
+import { createBrowserRouter, RouterProvider, RouteObject } from "react-router";
 
 // Import route configurations
-import { authRoutes } from './authRoutes';
-import { appRoutes } from './appRoutes';
+import { authRoutes } from "./authRoutes";
+import { appRoutes } from "./appRoutes";
 
 // Lazy load 404 page
-const ErrorPage = lazy(() => import('@views/pages/misc/Error'));
-const BlankLayout = lazy(() => import('@core/layouts/BlankLayout'));
+const ErrorPage = lazy(() => import("@views/pages/misc/Error"));
+const BlankLayout = lazy(() => import("@core/layouts/BlankLayout"));
 
 // Loading component
 const LoadingFallback = () => (
@@ -26,19 +27,19 @@ const LoadingFallback = () => (
 const routes: RouteObject[] = [
   // Auth routes
   ...authRoutes,
-  
+
   // App routes
   ...appRoutes,
-  
+
   // 404 - Not Found (Must be last)
   {
-    path: '*',
+    path: "*",
     element: (
       <BlankLayout>
-        <ErrorPage 
-          errorCode="404" 
-          title="Page Not Found" 
-          message="The page you're looking for doesn't exist." 
+        <ErrorPage
+          errorCode="404"
+          title="Page Not Found"
+          message="The page you're looking for doesn't exist."
         />
       </BlankLayout>
     ),

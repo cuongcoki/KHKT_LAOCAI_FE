@@ -8,6 +8,7 @@ import QuizDetailModal from "@/@core/components/dashboard/student/assignments/Qu
 import { IQuiz } from "@/infra/apiRAG/type/IQuiz";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen, History, BarChart3 } from "lucide-react";
+import QuizStatistics from "@/@core/components/dashboard/student/assignments/QuizStatistics";
 
 const StudentAssignments = () => {
   const { user } = useAuthStore();
@@ -165,8 +166,8 @@ const StudentAssignments = () => {
           <TabsContent value="statistics">
             <div className="bg-white rounded-xl shadow-sm p-6">
               <h2 className="text-lg font-semibold mb-4">Thống kê chi tiết</h2>
-              {/* TODO: Add detailed statistics charts */}
-              <p className="text-gray-500">Tính năng đang được phát triển...</p>
+             <QuizStatistics quizzes={quizzes} submissions={submissions}/>
+              {/* <p className="text-gray-500">Tính năng đang được phát triển...</p> */}
             </div>
           </TabsContent>
         </Tabs>

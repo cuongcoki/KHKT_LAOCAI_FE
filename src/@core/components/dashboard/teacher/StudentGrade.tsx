@@ -34,8 +34,8 @@ import {
   Brain,
   ClipboardList,
 } from "lucide-react";
-import { IUser } from "@/domain/interfaces/IUser";
-import { storage } from "@/utility";
+// import { IUser } from "@/domain/interfaces/IUser";
+// import { storage } from "@/utility";
 
 // Types based on Entity Diagram
 type GradeType = "quiz" | "assignment" | "ai_practice";

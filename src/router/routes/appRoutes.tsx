@@ -1,9 +1,10 @@
 import { lazy } from "react";
-import { RouteObject } from "react-router";
+import {  RouteObject } from "react-router";
 import { ProtectedRoute } from "../components";
 import { TeacherEval } from "@/views/dashboard/teacher/TeacherEval";
 import StudentProfile from "@/views/dashboard/student/StudentProfile";
 import TeacherProfile from "@/views/dashboard/teacher/TeacherProfile";
+import { RootRedirect } from "../components/RedirectsAuth";
 // import { ProtectedRoute } from "../components";
 
 const NotificationPage = lazy(
@@ -15,7 +16,6 @@ const VerticalLayout = lazy(() => import("@layouts/VerticalLayout"));
 const BlankLayout = lazy(() => import("@core/layouts/BlankLayout"));
 
 // Lazy load pages - Public
-const HomePage = lazy(() => import("@views/dashboard/Home"));
 // Lazy load misc pages
 // const ComingSoon = lazy(() => import("@views/pages/misc/ComingSoon"));
 const ErrorPage = lazy(() => import("@views/pages/misc/Error"));
@@ -85,16 +85,17 @@ const StudentAITutors = lazy(
   () => import("@views/dashboard/student/StudentAITutors")
 );
 
+
+// ✅ Root redirect component
+
+
 export const appRoutes: RouteObject[] = [
   // Home Route
-  {
+   {
     path: "/",
-    element: (
-      <BlankLayout>
-        <HomePage />
-      </BlankLayout>
-    ),
+    element: <RootRedirect />,
   },
+
 
 
   // Admin Routes
@@ -187,6 +188,10 @@ export const appRoutes: RouteObject[] = [
             path: "datasets",
             element: <TeacherDatasets />,
           },
+           {
+            path: "notifications",
+            element: <NotificationPage />,
+          }
         ],
       },
     ],
