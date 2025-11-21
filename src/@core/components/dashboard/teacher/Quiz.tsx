@@ -603,10 +603,14 @@ const QuizDetailDialog = ({
   );
 };
 
+interface QuizProps {
+  subjectId: string;
+}
+
 // Main Quiz Component
-const Quiz = () => {
+const Quiz = ({ subjectId }: QuizProps) => {
   const user: IUser | null = storage.getUser();
-  console.log(user);
+  console.log(subjectId);
 
   const [data, setData] = useState<{
     quizzes: Quiz[];

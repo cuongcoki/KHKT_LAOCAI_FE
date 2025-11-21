@@ -1,17 +1,21 @@
 import { create } from "zustand";
 import enrollmentsAPI from "@/infra/api/enrollments/enrollmentsAPI";
-import { IEnrollmentItem } from "@/domain/interfaces/IErollment";
+import { IEnrollmentItem, IEnrollmentItemPopulated } from "@/domain/interfaces/IErollment";
 import { handleApiError } from "../lib/errorHandler";
 import { IApiError } from "../lib/IError";
 
 interface EnrollmentState {
   // State
   enrollments: IEnrollmentItem[];
+  studentClasses: IEnrollmentItemPopulated[];
+  selectedStudentClass: IEnrollmentItemPopulated | null;
   isLoading: boolean;
-   error: IApiError | null;
+  error: IApiError | null;
   // Actions
   getEnrollmentsByClass: (classId: string) => Promise<void>;
+  getEnrollmentsByStudent: (studentId: string) => Promise<void>;
   setEnrollments: (enrollments: IEnrollmentItem[]) => void;
+  setSelectedStudentClass: (enrollment: IEnrollmentItemPopulated | null) => void;
   clearEnrollments: () => void;
   clearError: () => void;
 }
@@ -19,6 +23,8 @@ interface EnrollmentState {
 export const useEnrollmentStore = create<EnrollmentState>()((set) => ({
   // Initial State
   enrollments: [],
+  studentClasses: [],
+  selectedStudentClass: null,
   isLoading: false,
   error: null,
 
@@ -51,6 +57,32 @@ export const useEnrollmentStore = create<EnrollmentState>()((set) => ({
   },
 
   /**
+   * Lấy danh sách lớp học của học sinh theo studentId
+   */
+  getEnrollmentsByStudent: async (studentId: string) => {
+    try {
+      set({ isLoading: true, error: null });
+
+      const response = await enrollmentsAPI.getEnrollmentsByStudent(studentId);
+
+      set({
+        studentClasses: response.data || [],
+        isLoading: false,
+      });
+    } catch (error) {
+      const apiError = handleApiError(error);
+
+      set({
+        error: apiError,
+        isLoading: false,
+        studentClasses: [],
+      });
+
+      throw error;
+    }
+  },
+
+  /**
    * Set enrollments trực tiếp
    */
   setEnrollments: (enrollments: IEnrollmentItem[]) => {
@@ -58,10 +90,17 @@ export const useEnrollmentStore = create<EnrollmentState>()((set) => ({
   },
 
   /**
+   * Set selected student class
+   */
+  setSelectedStudentClass: (enrollment: IEnrollmentItemPopulated | null) => {
+    set({ selectedStudentClass: enrollment });
+  },
+
+  /**
    * Clear danh sách enrollments
    */
   clearEnrollments: () => {
-    set({ enrollments: [], error: null });
+    set({ enrollments: [], error: null, selectedStudentClass: null });
   },
 
   /**
