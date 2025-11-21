@@ -57,3 +57,42 @@ export interface IEnrollmentResponse {
   message: string;
   data: IEnrollmentItem[];
 }
+
+
+
+
+export interface IClass  {
+  id: string;
+  name: string;
+  code: string;
+  grade_level: number;
+  teacher_id: string;
+  subject_ids: string[];
+  max_students: number;
+  current_students: number;
+  school_year: string;
+  description: string;
+  is_active: boolean;
+  available_slots: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+// Hoặc tạo interface riêng cho trường hợp class_id là object populated
+export interface IEnrollmentItemPopulated {
+  student_id: string;
+  class_id: IClass; // Class đã được populate
+  status: string;
+  attendance_count: number;
+ enrollment_date: Date;
+  created_at: Date;
+  updated_at: Date;
+  id: string;
+}
+
+// Response type cho danh sách lớp của học sinh (với class đã populated)
+export interface IStudentClassesResponse {
+  success: boolean;
+  message: string;
+  data: IEnrollmentItemPopulated[];
+}

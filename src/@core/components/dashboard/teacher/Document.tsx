@@ -79,10 +79,13 @@ const mockDocuments: Document[] = [
     updated_at: "2024-11-02T14:30:00Z",
   },
 ];
+interface DocumentProps {
+  subjectId1: string;
+}
 
-const Document = () => {
+const Document = ({subjectId1} : DocumentProps) => {
   const user: IUser | null = storage.getUser();
-  console.log(user);
+  console.log(subjectId1);
 
   const [documents, setDocuments] = useState<Document[]>(mockDocuments);
   const [title, setTitle] = useState("");
