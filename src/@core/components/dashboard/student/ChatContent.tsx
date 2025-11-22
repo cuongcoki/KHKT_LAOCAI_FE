@@ -161,7 +161,7 @@ const ChatContent = ({ messages, isLoading = false }: ChatContentProps) => {
                               </div>
                             ) : (
                               <p className="text-sm whitespace-pre-wrap break-words">
-                                {message.content}
+                               {formatLatexContent(message.content)}
                               </p>
                             )}
                           </>
